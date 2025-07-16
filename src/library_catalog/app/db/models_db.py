@@ -5,6 +5,7 @@ Base = declarative_base()
 
 class Books(Base):
     """ Схема для создания таблицы в БД """
+
     __tablename__ = "books"
 
     id = Column(Integer, primary_key=True)

@@ -1,26 +1,13 @@
-from sqlalchemy.orm import Session, sessionmaker
-from sqlalchemy import create_engine
-from src.db.models_db import Base,Books
-from src.logger.logger import setup_logger
+from src.library_catalog.app.db.interfaces.db_base import DataBase
+from src.library_catalog.app.db.interfaces.db_session import DataBaseSession
+from src.library_catalog.app.db.models_db import Books
+from src.library_catalog.app.logger.logger import setup_logger
 
 logger = setup_logger("db.class.BookRepository")
 
 
-class BookRepository:
+class BookRepository(DataBase, DataBaseSession):
     """ Класс для работы с базой данных Postgresql """
-
-    def __init__(self, db_url: str):
-        """ Метод инициализации класса """
-
-        self.engine = create_engine(db_url)
-        self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-        Base.metadata.create_all(bind=self.engine)
-
-    def get_session(self) -> Session:
-        """ Метод создания ссесии """
-
-        logger.info("Работа метода открытия ссесии с БД")
-        return self.SessionLocal()
 
     def add_book(self, title: str, author: str,
                  year_publication: int, genre: str,
@@ -107,3 +94,6 @@ class BookRepository:
             return False
         finally:
             session.close()
+
+
+

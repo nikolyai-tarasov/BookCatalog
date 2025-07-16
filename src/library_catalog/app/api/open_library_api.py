@@ -1,7 +1,7 @@
-from src.api.api import  BaseApiOpenLibrary
+from src.library_catalog.app.api.api import  BaseApiOpenLibrary
 import os
 import requests
-from src.logger.logger import setup_logger
+from src.library_catalog.app.logger.logger import setup_logger
 
 logger = setup_logger("class.OpenLibraryAPI")
 

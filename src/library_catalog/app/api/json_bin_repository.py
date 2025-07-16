@@ -1,8 +1,8 @@
 import os
 import requests
 from dotenv import load_dotenv
-from src.api.api import BaseApiClient
-from src.logger.logger import setup_logger
+from src.library_catalog.app.api.api import BaseApiClient
+from src.library_catalog.app.logger.logger import setup_logger
 
 load_dotenv(override=True)
 logger = setup_logger("class.JsonBin")
